@@ -1,24 +1,28 @@
-version: "3"
+version: '3.9'
 
 services:
-    app:
-        build: .
-        entrypoint: .docker/entrypoint.sh
-        container_name: nodeApi
-        ports:
-            - "5000:5000"
-        volumes:
-            - .:/home/node/app
-        depends_on:
-            - db
-
-    db:
-        build: ./.docker/MongoDB
-        container_name: MongoDB
+    # MongoBD services
+    mongo_db:
+        container_name: db_container
+        image: mongo:latest
         restart: always
-        env_file: .env
-        tty: true
-        ports:
-            - '27017:27017'
         volumes:
-            - '/my/own/datadir:/data/db'
+            - mongo_db:/data/db
+
+    # Node
+    api:
+        build: .
+        ports:
+            - 5000:5000
+        environment:
+            PORT: 5000
+            BASE: http://localhost:5000
+            DATABASE: mongodb://mongo_db:27017
+            DB_NAME: my_db
+            NAME: ItaloCobains
+            SECRETKEY: ItaloCobains
+        depends_on:
+            - mongo_db
+
+volumes:
+    mongo_db: {}

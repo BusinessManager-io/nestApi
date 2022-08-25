@@ -30,13 +30,14 @@ export class App {
         this.express.listen(this.port, () => {
             console.log(` Servidor Iniciado na porta ${this.port}`);
         });
+        mongoose.connection.on('connection', () => {
+            console.log("DataBase MongoDB Conectado")
+        })
     }
 
     private databaseMongoDB(): void {
         mongoose.connect(process.env.DATABASE as string);
-        mongoose.connection.on('connection', () => {
-            console.log("DataBase MongoDB Conectado")
-        })
+        
     }
 
     private routes(): void {
