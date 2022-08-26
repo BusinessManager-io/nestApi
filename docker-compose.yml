@@ -26,3 +26,5 @@ services:
 
 volumes:
     mongo_db: {}
+
+# Docker ainda n atualiza o codigo automatico
