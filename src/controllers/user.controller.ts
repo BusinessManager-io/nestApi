@@ -5,7 +5,7 @@ class UserController {
     public async signup(req: Request, res: Response): Promise<Response> {
         const user = await userModel.create(req.body);
         const response = {
-            message: "Usuario cadastrado com sucesso!!!",
+            message: "Usuario cadastrado com sucesso!",
             _id: user._id,
             name: user.name,
         };
