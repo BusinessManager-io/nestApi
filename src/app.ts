@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import "dotenv/config";
 import userRoute from "./routes/user.route";
+import { userInfo } from "os";
 
 export class App {
     private express: express.Application;
@@ -15,7 +16,7 @@ export class App {
         this.routes();
         this.listen();
     }
-        
+
     public getApp(): express.Application {
         return this.express;
     }
@@ -30,17 +31,17 @@ export class App {
         this.express.listen(this.port, () => {
             console.log(` Servidor Iniciado na porta ${this.port}`);
         });
-        mongoose.connection.on('connection', () => {
-            console.log("DataBase MongoDB Conectado")
-        })
+        mongoose.connection.on("connection", () => {
+            console.log("DataBase MongoDB Conectado");
+        });
     }
 
     private databaseMongoDB(): void {
         mongoose.connect(process.env.DATABASE as string);
-        
     }
 
     private routes(): void {
         this.express.use("/user", userRoute);
+        this.express.use("/infos", userInfo);
     }
 }

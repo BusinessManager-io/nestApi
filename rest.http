@@ -20,3 +20,8 @@ Content-Type: application/json
     "password": "italoaaa12345",
     "avatar": "https://dog.ceo/api/breeds/image/random"
 }
+
+### Data
+
+GET http://localhost:5000/infos/data
+Content-Type: application/json
