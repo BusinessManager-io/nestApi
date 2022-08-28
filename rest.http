@@ -25,3 +25,14 @@ Content-Type: application/json
 
 GET http://localhost:5000/infos/data
 Content-Type: application/json
+
+### Inset Data
+
+POST http://localhost:5000/infos/insertData
+Content-Type: application/json
+
+{
+    "Plano": "Plano Simples",
+    "Valor": "12x12,90",
+    "Vantagens": ["Vendas"]
+}

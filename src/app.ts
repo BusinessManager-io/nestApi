@@ -3,7 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import "dotenv/config";
 import userRoute from "./routes/user.route";
-import { userInfo } from "os";
+import userInfo from "./routes/info.route";
 
 export class App {
     private express: express.Application;
